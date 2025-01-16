@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus {
+            border-color: #ff9a9e;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 154, 158, 0.5);
+        }
+        input[type="submit"] {
+            background-color: #ff9a9e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #fad0c4;
+        }
+        .message-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: blink 1s infinite alternate;
+            z-index: 1000;
+            text-align: center;
+        }
+        @keyframes blink {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0.3;
+            }
+        }
+        h3 {
+            color: red;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <form action="register" method="post">
+        {% csrf_token %}
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br>
+        
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br>
+        
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+        
+        <label for="password1">Password:</label>
+        <input type="password" id="password1" name="password1" required><br>
+        
+        <label for="password2">Confirm Password:</label>
+        <input type="password" id="password2" name="password2" required><br>
+        
+        <input type="submit" value="Register"><br>
+    </form>
+    {% if messages %}
+    <div id="message-container" class="message-container">
+        {% for message in messages %}
+        <h3>{{ message }}</h3>
+        {% endfor %}
+    </div>
+    {% endif %}
+    <script>
+        // Get all input elements
+        const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
+        
+        // Function to remove blinking effect
+        function stopBlinking() {
+            const messageContainer = document.getElementById('message-container');
+            if (messageContainer) {
+                messageContainer.style.animation = 'none';
+            }
+        }
+        
+        // Add event listeners to all input fields
+        inputs.forEach(input => {
+            input.addEventListener('focus', stopBlinking);
+        });
+    </script>
+</body>
+</html>

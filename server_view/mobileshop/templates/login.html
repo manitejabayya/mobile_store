@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5a623, #f76b1c);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #444;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .form-container h1 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin: 1rem 0 0.5rem;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: #f76b1c;
+            outline: none;
+        }
+
+        button {
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: #f76b1c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #f5a623;
+        }
+
+        .message-container {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #ffe6e6;
+            color: #d9534f;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .message-container h3 {
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1.5rem;
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Login</h1>
+        <form action="/accounts/login" method="post">
+            {% csrf_token %}
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+
+        {% if messages %}
+        <div id="message-container" class="message-container">
+            {% for message in messages %}
+            <h3>{{ message }}</h3>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
