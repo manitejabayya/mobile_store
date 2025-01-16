@@ -71,15 +71,15 @@ nav {
   display: block;
   width: 30px;
   height: 3px;
-  background-color: #ffcc00; /* New Color */
+  background-color: #ffcc00; 
   border-radius: 5px;
-  transition: all 0.3s ease-in-out; /* Smooth transition for effects */
+  transition: all 0.3s ease-in-out; 
 }
 
 /* Active State - Change Hamburger to Cross */
 .hamburger.active span:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
-  background-color: #ff9900; /* Slightly darker color on active state */
+  background-color: #ff9900; 
 }
 
 .hamburger.active span:nth-child(2) {
@@ -88,13 +88,13 @@ nav {
 
 .hamburger.active span:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
-  background-color: #ff9900; /* Slightly darker color on active state */
+  background-color: #ff9900; 
 }
 
 /* Hover Effect */
 .hamburger:hover span {
   background-color: #ff9900;
-  transform: scale(1.1); /* Slightly enlarges the bars */
+  transform: scale(1.1); 
 }
 
 /* Media Query for Display */
